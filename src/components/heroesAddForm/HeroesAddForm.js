@@ -4,7 +4,7 @@ import { v4 as uuidv4 } from 'uuid';
 import { useDispatch, useSelector } from 'react-redux';
 
 import {useHttp} from '../../hooks/http.hook';
-import { heroCreated } from '../../actions';
+import { heroCreated } from '../heroesList/heroesSlice';
 
 const HeroesAddForm = () => {
     const {filters, filtersLoadingStatus} = useSelector(state => state.filters);
