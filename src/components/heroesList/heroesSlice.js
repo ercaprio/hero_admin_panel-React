@@ -15,6 +15,8 @@ export const fetchHeroes = createAsyncThunk(
     }
 );
 
+console.log("Er");
+
 const heroesSlice = createSlice({
     name: 'heroes',
     initialState,
