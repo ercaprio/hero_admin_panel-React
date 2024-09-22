@@ -1,20 +1,18 @@
+/* eslint-disable no-unused-vars */
 import { Formik, Field, Form, ErrorMessage } from 'formik';
 import * as Yup from 'yup';
 import { v4 as uuidv4 } from 'uuid';
-import { useDispatch, useSelector } from 'react-redux';
+import { useSelector } from 'react-redux';
 import { selectAll } from "../heroesFilters/filtersSlice";
 import store from '../../store';
 
-
-import {useHttp} from '../../hooks/http.hook';
-import { heroCreated } from '../heroesList/heroesSlice';
+import { useCreateHeroMutation } from '../../api/apiSlice';
 
 const HeroesAddForm = () => {
+    const [createHero, {isLoading}] = useCreateHeroMutation();
+
     const { filtersLoadingStatus } = useSelector(state => state.filters);
     const filters = selectAll(store.getState());
-
-    const dispatch = useDispatch();
-    const {request} = useHttp();
 
     const renderFilters = (filters, status) => {
         if (status === "loading") {
@@ -51,14 +49,8 @@ const HeroesAddForm = () => {
                         .required('Обязательное поле!')
             })}
             onSubmit = {(values, { resetForm }) => {
-                const res = {id: uuidv4(), ...values};
-                request("http://localhost:3001/heroes", 'POST', JSON.stringify(res))
-                    .then(() => {
-                        dispatch(heroCreated(res));
-                        resetForm();
-                    })
-                    .catch(err => console.log(err));
-                    
+                const newHero = {id: uuidv4(), ...values};
+                createHero(newHero).unwrap();
             }}
         >
             <Form className="border p-4 shadow-lg rounded">

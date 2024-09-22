@@ -10,7 +10,6 @@ const HeroesFilters = () => {
 
     const {filtersLoadingStatus, activeFilter} = useSelector(state => state.filters);
     const filters = selectAll(store.getState());
-    console.log(filters)
     const dispatch = useDispatch();
 
     useEffect(() => {

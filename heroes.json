@@ -11,10 +11,16 @@
       "name": "iyuuiyiyutiytu",
       "description": "i6ruruygyru",
       "element": "fire"
+    },
+    {
+      "id": "8ea877a4-f8fa-4789-abc6-42388b72694d",
+      "name": "Marvel",
+      "description": "Iron Man",
+      "element": "earth"
     }
   ],
   "filters": [
-    {      
+    {
       "id": "all",
       "name": "all",
       "label": "Все",
